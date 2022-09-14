@@ -1,10 +1,12 @@
 from flask import Flask, jsonify, make_response
+from flask_cors import CORS
 
 from .services.customers import get_customers
 from .services.employees import get_employees
 from .services.notifications import send_notifications
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # Mozilla provides good references for Access Control at:
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
@@ -20,7 +22,7 @@ def customers():
     response = make_response(jsonify(sample_response))
 
     # Add Access-Control-Allow-Origin header to allow cross-site request
-    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+    # response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
 
     return response
 
@@ -35,7 +37,7 @@ def employees():
     response = make_response(jsonify(sample_response))
 
     # Add Access-Control-Allow-Origin header to allow cross-site request
-    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+    # response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
 
     return response
 
@@ -54,6 +56,6 @@ def notifications():
     response = make_response(jsonify(sample_response))
 
     # Add Access-Control-Allow-Origin header to allow cross-site request
-    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
+    # response.headers['Access-Control-Allow-Origin'] = 'http://localhost:3000'
 
     return response
